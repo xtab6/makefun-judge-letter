@@ -209,6 +209,16 @@ def heart(cv, cx, cy, s, color):
     cv.triangle(cx - 2 * s, cy, cx + 2 * s, cy, cx, cy + 2 * s + s // 2, color)
 
 
+def cat_face(cv, cx, cy, s, color):
+    # tiny cat face: round head, two ears, two eyes (the cat who approved
+    # the judge — she appears next to the signature to vouch for it)
+    cv.circle(cx, cy, s, color)
+    cv.triangle(cx - s, cy - s // 2, cx - s // 2, cy - s, cx, cy - s // 2, color)
+    cv.triangle(cx, cy - s // 2, cx + s // 2, cy - s, cx + s, cy - s // 2, color)
+    cv.circle(cx - s // 2, cy - 2, 2, CREAM)
+    cv.circle(cx + s // 2, cy - 2, 2, CREAM)
+
+
 def draw(cv):
     # paper + double border
     cv.border_rect(16, 16, W - 32, H - 32, RED, 5)
@@ -254,6 +264,7 @@ def draw(cv):
     # ---- sign-off + P.S. -------------------------------------------------
     cv.text(SIGN, 80, 862, 4, INK)
     heart(cv, 560, 872, 7, RED)
+    cat_face(cv, 645, 872, 13, INK)
     cv.text(PS, 80, 906, 4, RED)
 
     # ---- wax seal, bottom right ------------------------------------------
